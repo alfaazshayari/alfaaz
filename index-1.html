@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171326">
+<title>ALFAAZ — Words That Touch Hearts</title>
+<meta name="description" content="Read and share beautiful Hindi, Urdu and English shayari on ALFAAZ.">
+<style>
+:root{--bg:#100e19;--panel:#1c1929;--panel2:#252136;--gold:#e8c98b;--muted:#b9b2c8;--white:#fffaf2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#382a49 0,#100e19 48%);color:var(--white);font-family:system-ui,-apple-system,"Noto Sans Devanagari","Noto Nastaliq Urdu",sans-serif;min-height:100vh}
+header{padding:30px 16px 20px;text-align:center}.logo{font-family:Georgia,serif;font-size:42px;letter-spacing:7px;color:var(--gold);font-weight:700}.tag{color:var(--muted);font-size:13px;letter-spacing:1.5px;margin-top:5px}
+.wrap{width:min(920px,92%);margin:auto}.search{display:flex;gap:8px;margin:14px 0 18px}.search input{flex:1;min-width:0;background:var(--panel);border:1px solid #494158;border-radius:14px;padding:14px;color:white;font-size:15px;outline:none}.search input:focus{border-color:var(--gold)}
+.filters{display:flex;gap:8px;overflow:auto;padding:3px 0 14px;scrollbar-width:none}.filters button{white-space:nowrap;border:1px solid #51465d;background:var(--panel);color:var(--white);padding:9px 14px;border-radius:999px;font-size:13px}.filters button.active{background:var(--gold);color:#21192a;border-color:var(--gold);font-weight:700}
+.feature{background:linear-gradient(135deg,#30243d,#1b192a);border:1px solid #51435c;border-radius:20px;padding:22px;text-align:center;margin:5px 0 18px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}.feature h1{font:26px Georgia,serif;margin:10px 0}.feature p{color:var(--muted);margin:0;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(145deg,#211d30,#191625);border:1px solid #3d354a;border-radius:17px;padding:17px;display:flex;flex-direction:column;min-height:190px}.cat{color:var(--gold);font-size:11px;letter-spacing:1px;text-transform:uppercase}.poem{font-size:17px;line-height:1.8;white-space:pre-line;margin:12px 0 16px;flex:1}.poem.urdu{direction:rtl;text-align:right;font-size:20px;line-height:2}.actions{display:flex;gap:8px}.actions button{flex:1;border:1px solid #51465d;background:#2b2639;color:var(--white);border-radius:10px;padding:9px;font-size:12px}.actions button:first-child{color:var(--gold)}
+footer{text-align:center;color:#938ba1;font-size:12px;padding:30px 12px 36px}.empty{text-align:center;color:var(--muted);padding:30px;display:none}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.logo{font-size:52px}.feature h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header><div class="logo">ALFAAZ</div><div class="tag">WORDS THAT TOUCH HEARTS</div></header>
+<main class="wrap">
+  <div class="feature"><div class="eyebrow">✦ एहसासों की दुनिया ✦</div><h1>हर जज़्बात के लिए एक अल्फ़ाज़</h1><p>Hindi • Urdu • English Shayari</p></div>
+  <div class="search"><input id="search" type="search" placeholder="शायरी खोजें... / Search poetry"></div>
+  <nav class="filters" id="filters">
+    <button class="active" data-cat="All">सभी</button><button data-cat="Love">❤️ Love</button><button data-cat="Sad">💔 Sad</button><button data-cat="Attitude">👑 Attitude</button><button data-cat="Islamic">🌙 Islamic</button><button data-cat="English">✦ English</button>
+  </nav>
+  <section class="grid" id="poems"></section><div class="empty" id="empty">इस कैटेगरी में अभी शायरी नहीं मिली।</div>
+</main>
+<footer>© 2026 ALFAAZ · Made with ❤️ for poetry lovers<br>अपनी पसंदीदा शायरी पढ़ें और दोस्तों के साथ साझा करें।</footer>
+<script>
+const data=[
+{cat:"Love",lang:"hi",text:"कुछ अल्फ़ाज़ दिल से निकलते हैं,\nऔर सीधे दिल तक पहुँचते हैं।"},
+{cat:"Love",lang:"hi",text:"तेरी मुस्कान से शुरू होती है सुबह मेरी,\nतेरे ख़यालों में ही ढलती है शाम मेरी।"},
+{cat:"Love",lang:"ur",text:"محبت لفظوں کی محتاج نہیں ہوتی،\nخاموشی بھی بہت کچھ کہہ جاتی ہے۔"},
+{cat:"Sad",lang:"hi",text:"ख़ामोशियाँ अक्सर बहुत कुछ कह जाती हैं,\nकुछ यादें मुस्कुराकर भी रुला जाती हैं।"},
+{cat:"Sad",lang:"ur",text:"کچھ درد ایسے ہوتے ہیں جو کہے نہیں جاتے،\nبس خاموشی سے سہے جاتے ہیں۔"},
+{cat:"Sad",lang:"hi",text:"वक़्त बदलता है, लोग बदल जाते हैं,\nकुछ अपने भी अजनबी बन जाते हैं।"},
+{cat:"Attitude",lang:"hi",text:"हम अपनी पहचान ख़ुद बनाते हैं,\nकिसी के नाम से नहीं जाने जाते हैं।"},
+{cat:"Attitude",lang:"en",text:"I don't chase attention,\nI focus on becoming better."},
+{cat:"Islamic",lang:"ur",text:"اللہ پر بھروسہ رکھو،\nوہ وہاں سے راستہ بناتا ہے جہاں گمان بھی نہیں ہوتا۔"},
+{cat:"Islamic",lang:"hi",text:"दुआ कभी बेअसर नहीं होती,\nबस उसका जवाब सही वक़्त पर मिलता है।"},
+{cat:"English",lang:"en",text:"Some words are written by the hand,\nbut felt by the heart."},
+{cat:"English",lang:"en",text:"Stay humble, stay loyal,\nand let your actions speak."}
+];
+let current="All";
+const labels={Love:"LOVE SHAYARI",Sad:"SAD SHAYARI",Attitude:"ATTITUDE",Islamic:"ISLAMIC",English:"ENGLISH"};
+function render(){
+ const q=document.getElementById('search').value.toLowerCase();
+ const list=data.filter(x=>(current==="All"||x.cat===current)&&x.text.toLowerCase().includes(q));
+ const root=document.getElementById('poems');root.innerHTML="";
+ list.forEach((x,i)=>{
+  const card=document.createElement('article');card.className='card';
+  const cat=document.createElement('div');cat.className='cat';cat.textContent=labels[x.cat]||x.cat;
+  const p=document.createElement('div');p.className='poem'+(x.lang==='ur'?' urdu':'');p.textContent=x.text;
+  const actions=document.createElement('div');actions.className='actions';
+  const copy=document.createElement('button');copy.textContent='⧉ Copy';copy.onclick=async()=>{try{await navigator.clipboard.writeText(x.text);copy.textContent='✓ Copied';setTimeout(()=>copy.textContent='⧉ Copy',1400)}catch(e){copy.textContent='Copy unavailable'}};
+  const share=document.createElement('button');share.textContent='↗ Share';share.onclick=async()=>{if(navigator.share){try{await navigator.share({title:'ALFAAZ Shayari',text:x.text})}catch(e){}}else{await navigator.clipboard.writeText(x.text);share.textContent='✓ Copied';setTimeout(()=>share.textContent='↗ Share',1400)}};
+  actions.append(copy,share);card.append(cat,p,actions);root.append(card);
+ });
+ document.getElementById('empty').style.display=list.length?'none':'block';
+}
+document.getElementById('filters').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;current=e.target.dataset.cat;document.querySelectorAll('.filters button').forEach(b=>b.classList.toggle('active',b===e.target));render()});
+document.getElementById('search').addEventListener('input',render);
+render();
+</script>
+</body>
+</html>
